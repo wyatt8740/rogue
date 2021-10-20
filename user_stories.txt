@@ -1,0 +1,8 @@
+Should play sort of like rogue
+
+Should be in a browser
+
+Should either come with documentation, or explain itself somewhat easily to
+someone new to roguelikes.
+
+80's visual styling?

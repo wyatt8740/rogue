@@ -1,0 +1,24 @@
+'player' Object:
+Contains player-specific stats and calculations.
+
+Tree:
+|--> name:      The player's first name.
+|--> lName:     The player's last name.
+|--> age:       The player's age.
+|--> gender:    How the player identifies.
+|                 One of 'M', 'F', 'N', or 'O'
+|                 (male/female/neutral (no gender)/other).
+|                 
+|--> stats: nested object containing the stats of the player.
+|     |--> level:         Level
+|     |--> exp:           Experience Points
+|     |--> HPMax:         Maximum HP
+|     |--> HPCurr:        Current HP
+|     |--> str:           Strength
+|     |--> acc:           Accuracy
+|     |--> def:           Defense
+|     |--> int:           Intelligence
+|     |--> XPToNextLevel: Actually a getter function. States how many
+|     |                   total experience points are required for a level up
+|     |                   (not the number remaining).
+|

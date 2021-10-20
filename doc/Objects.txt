@@ -1,0 +1,160 @@
+Because Javascript sucks, data storage is a little bit unconventional in this
+game to allow for saving/restoring data.
+
+The rationale for this design is as follows:
+
+Because some of our objects contain:
+
+* getters
+* setters
+* other functions/program code
+
+…and because:
+
+* it is highly wasteful to store entire functions in a JSON save string
+    * Makes it harder for a human to read save strings for debugging
+    * when the game save gets too big for localStorage everything breaks
+    * highly redundant
+* Functions can't be updated in game code if they will be overwritten on a
+save restore
+
+…We need to have a way to separate 'the data' from 'the code/setters' when
+serializing objects to JSON.
+
+
+
+The basic idea is that an object is laid out so every 'saved' piece of data
+must be contained in an object at the top level called `privData`.
+
+    var enemy_foo = {
+        privData: {
+            name: "Foo the Fighter",
+            level: 5
+            
+        },
+        <snip>
+    }
+
+Unfortunately, this ALSO means that **every single piece of data**, even ones
+that aren't further processed when reading or writing, needs to have a getter
+and setter.
+
+Either that, or we have to directly access the object's "privData", which we
+should NEVER do because that would mean we have to refactor everywhere if we
+turn a "transparent" (unprocessed) variable into a getter/setter variable
+later.
+
+Therefore, including the snipped stuff above, a complete serializeable object
+would be something like:
+
+    var enemy_foo = {
+        privData: {
+            name: "Foo the Fighter",
+            level: 5
+            
+        },
+        get name() { return this.privData.name; },
+        set name(str) { this.privData.name = str; },
+        get level() { return this.privData.level; },
+        set level(num) { this.privData.level = num; }
+    }
+
+On the other hand, though, doing it like this, with every variable having a
+getter/setter, means that we can do type checking for places where we're
+worried we might write something incorrect (or when debugging things). So
+there may be a performance/overhead to this approach, but honestly it also
+has a lot of upsides in that it can abstract away some of the dumber ideas
+in javascript.
+
+It also means we can do things like:
+
+    player.hp -= 5;
+    
+…And have the hp bar automatically drop by five points.
+
+`<monster name>.hp`'s setter might have a check to see if their HP dropped to
+or below zero that procs a death message and changes the monster's tile
+appearance.
+
+Due to this, I think it's actually a neat paradigm; unfortunately it just
+complicates designing objects to begin with. But once the objects are created
+it should be versatile and pretty easy to work with.
+
+**We may be able to make a constructor function that can create new objects
+with 'privData' and such automagically.** I just haven't done so (not yet, at
+least). Maybe it'd be a good project for one of you to try?
+
+For nested objects, it'd look like this. By the way, I just made up the
+following items. we don't have any convention for item names/constants yet:
+
+    var enemy_foo = {
+        privData: {
+            name: "Foo the Fighter",
+            level: 5
+            
+        },
+        get name() { return this.privData.name; },
+        set name(str) { this.privData.name = str; },
+        
+        inventory: [ 'rope', 'snake' ], /* possible loot in array form */
+        stats: {
+            privData: {
+                level: 1,
+                HPMax: 50,
+                HPCurr: 42,
+                str: 6
+            },
+            get level(){return this.privData.level;},
+            set level(num){this.privData.level=parseInt(num);},
+            get HPMax(){return this.privData.HPMax;},
+            set HPMax(num){this.privData.HPMax=parseInt(num);},
+            get HPCurr(){return this.privData.HPCurr;},
+            set HPCurr(num){this.privData.HPCurr=parseInt(num);},
+            get str(){return this.privData.str;},
+            set str(num){this.privData.str=parseInt(num);}
+        }
+    }
+
+Nested objects do NOT need to have a 'privData' entry in the parent object.
+I think I handled this in the `gameState.js` file; I'll check later.
+
+Anyway, this format looks to be something that could be easily auto-generated
+(or we could make a script to compose these sorts of structures for us that
+puts them on a clipboard so we can paste them in). Just some thoughts.
+
+When saving and loading states, refer to the 'deepCopyObj() function. As a
+warning, it's recursive.
+
+That's the function that I plan to use going forward, instead of the other
+spaghetti in the file.
+
+
+UPDATE:
+
+## notes to self
+
+might need to revisit this; `deepCopyObj()` works but haven't got
+anything using it. It might actually be what I was going to use to implement
+'classes,' where I make a template object and `deepCopyObj()` it for every
+instance I need.
+
+    var playercopy = {};
+    deepCopyObj(player, playercopy);
+
+works and copies objects as well as plain data values recursively.
+
+I probably actually want to take `getPlayerData`'s code, and make a version
+of it that checks every 'object' type element for a 'privData' member; it
+should then copy all the privData stuff, skip anything in the parent of the 
+privData object that has the same name as a value in the privData, and
+copy the rest.
+
+Also remember that doing '=' assignment on a setter won't replace the setter.
+Just assign a value.
+
+## TL;DR
+
+privData is a special object.
+
+Every object that we care about in the long term (that should be saved)
+should have a privData sub-object. This contains the raw values for things.
