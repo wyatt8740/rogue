@@ -1,0 +1,40 @@
+<!doctype html>
+<head>
+  
+  <meta charset="UTF-8">
+  <script src="term.js"></script>
+  <script>
+  window.addEventListener('load', function() {
+    var term=term=new Terminal({cols: 80, rows: 24, screenKeys: true});
+    
+    term.on('data', function(data) {
+      socket.emit('data', data);
+    });
+    
+    term.on('title', function(title) {
+      document.title = title;
+    });
+    termElement=document.querySelector("term");
+    /* overwrites whatever element you open */
+    term.open(termElement);
+    
+    term.write('\x1b[31mWelcome to term.js!\x1b[m\r\n');
+
+    /* could listen for keypresses or use local messaging */
+    /* this can be used for curses stuff in js(!) */
+    /*    socket.on('data', function(data) {
+      term.write(data);
+    })*/
+  })
+            
+            /* disconnect */
+/*       term.destroy(); */
+</script>
+</head>
+<html>
+<!--<script src="/socket.io/socket.io.js"></script>-->
+
+<term>
+
+</term>
+</html>
