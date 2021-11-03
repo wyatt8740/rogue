@@ -1,0 +1,2 @@
+We need to use `browserify` with the `-s <module name>` arguments to make a stand-alone accessible module from the window DOM.
+
