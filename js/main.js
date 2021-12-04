@@ -649,7 +649,7 @@ function fullScreen()
 
 function mainMenu()
 {
-  allowSaving()
+/*  allowSaving()
   document.getElementById("settings").disabled=false;
   write("<center><b>The Unnamed Game</b></center>");
   append('\nSource code is at: <a href="https://gitlab.com/wyatt8740/unnamed-game">https://gitlab.com/wyatt8740/unnamed-game</a>');
@@ -657,7 +657,26 @@ function mainMenu()
   append("\n<img src='img/test.png'>");
   button[0].visible = true;
   button[0].label = "New Game";
-  button[0].func="gameStart();";
+  button[0].func="gameStart();";*/
+  var o = {
+	width: 80,
+	height: 25
+}
+  var d = new ROT.Display(o);
+  /*document.body.appendChild(d.getContainer()); */
+
+  $().appendChild(d.getContainer());
+    
+    for (var i=0; i<o.width; i++) {
+	  for (var j=0; j<o.height; j++) {
+		if (!i || !j || i+1 == o.width || j+1 == o.height) {
+		  d.draw(i, j, "#", "gray");
+		} else {
+		  d.draw(i, j, ".", "#666");
+		}
+	  }
+    }
+  d.draw(o.width >> 1, o.height >> 1, "@", "goldenrod");
 }
 
 function main()
