@@ -445,6 +445,15 @@ function append(str)
   $().innerHTML+=str;
 }
 
+/* create a text field for string entry, appended to the bottom of stdout's contents. */
+function textPrompt(promptId, placeholder='') {
+  var txtPrompt=document.createElement('input');
+  txtPrompt.setAttribute('type','text');
+  txtPrompt.setAttribute('id', promptId);
+  txtPrompt.setAttribute('placeholder',placeholder);
+  $().appendChild(txtPrompt);
+}
+
 /* append image with path str to output. Remember to use relative paths!*/
 function appendImg(str)
 {

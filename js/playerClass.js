@@ -26,10 +26,10 @@ var player = {
                  setters manipulate. Stored "privately" so we can dynamically
                  update the stat bars and such
               */
-    name:      "Player",
-    lName:     "McPlayerson",
+    name:      "",
+    lName:     "",
     age:       18,  // idk if we need this
-    gender:    "N", // neutral
+    gender:    "N", // neutral. for now we don't care at all about this
     money:     400
   },
   /* getters and setters start here */
