@@ -1,38 +1,16 @@
 # Unnamed Game
-An experimental HTML5, CSS3, and JavaScript-based text game interface which may
-eventually also have a real game attached to it.
 
-Currently "playable," in so far as a gameless half-done engine can be played,
-at [https://wyatt8740.github.io/rogue/](https://wyatt8740.github.io/rogue/).
+Map:
 
-It's licensed under GPLv3, but I am not too religiously attached to the license,
-so I may change it to something else if people ask. Please note that whatever
-form it takes, it shall remain free (and open-source) software (at the very
-least in any version I am responsible for).
+index.html: game page. Add new js files to the head of this html.
 
-As of now, it does not have any external dependencies or need any build scripts.
-It does not use node.js, nor does it use any other "helper" libraries.
-It's just pure hand-written Javascript, and I am hoping that this will make the
-game perform better and take less space, as well as being easier for anyone
-who uses Javascript to contribute to (no need to learn node, which is basically
-another language).
+* `js/main.js`: main functionality
 
-The tradeoff here is that it currently doesn't render properly in
-Microsoft Internet Explorer 11 or "Edge." Edge is *nearly* there, but it fails
-to properly render right-aligned text in SVG graphics I'm using for status
-bars.
-IE 11 fails miserably, as is to be expected.
+* `js/rooms.js`: room definitions and logic
 
-Chromium Edge (new edge) works fine of course.
+* `js/gameState.js`: Game saving/loading logic. Serializes/deserializes entire game state to/from JSON.
 
-It works best in and is primarily developed targetting Firefox and related
-(gecko-based) browsers such as Seamonkey, Pale Moon, and Waterfox. It should
-be functional in Chrome/Chromium and other Blink-based browsers like Opera, too.
+* `js/objTemplates.js`: contains "prototype" definitions for objects that we might expect something else to "inherit" from.
 
-It is not yet tested in newer versions of normal WebKit (Safari), but it works
-in WebkitGTK, so *very modern* versions of Safari should theoretically work.
+* `playerClass.js`: contains player information, getters, setters for stats.
 
-It works fine in Android Firefox and Chrome/Chromium.
-
-If it works well in newer Safari, it should also render in all other
-browsers on iOS, since Apple forces them all to use its WebKit engine.
