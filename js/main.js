@@ -190,6 +190,30 @@ window.onkeyup = function(event) {
         event.preventDefault();
         button[11].element.click();
       break;
+
+      case 65: /* a */
+        event.preventDefault();
+        var el = document.getElementById("btnNorth");
+        el.click();
+      break;
+
+      case 83: /* s */
+        event.preventDefault();
+        var el = document.getElementById("btnSouth");
+        el.click();
+      break;
+
+      case 68: /* d */
+        event.preventDefault();
+        var el = document.getElementById("btnEast");
+        el.click();
+      break;
+
+      case 70: /* f */
+        event.preventDefault();
+        var el = document.getElementById("btnWest");
+        el.click();
+      break;
     }
   }
 }
