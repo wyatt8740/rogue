@@ -30,7 +30,7 @@ function player_turn()
 
 function fight_status()
 {
-  append("I am engaged in combat against " + currentEnemy.desc + '.\n\n');
+  append("\n\n<b>I am engaged in combat against " + currentEnemy.desc + '.</b>\n\n');
   append('The ' + currentEnemy.name + ' looks ' + enemy_health_estimate());
 }
 
@@ -70,7 +70,7 @@ function attack_enemy() {
     append('\n\n<b>The enemy took 0 damage</b>.\n')
   }
   else {
-    write('I ' + (crit ? 'crit ': 'hit ' ) + 'the ' + currentEnemy.name + ' for ' + dmg + ' damage!\n');
+    write('I ' + (crit ? '<b>crit</b> ': 'hit ' ) + 'the ' + currentEnemy.name + ' for ' + dmg + ' damage!\n');
   }
   currentEnemy.stats.HPCurr -= dmg;
   currentEnemy.stats.HPCurr=Math.round(currentEnemy.stats.HPCurr);
@@ -122,14 +122,14 @@ function enemy_turn() {
   var dmg=roll.dmg;
   var crit=roll.crit;
 
-  append('\n\nThe ' + currentEnemy.name + ' ' + currentEnemy.attackText);
+  append('\nThe ' + currentEnemy.name + ' ' + currentEnemy.attackText);
 
   if(dmg==0) {
-    write('Whew! I dodged that attack.…')
-    append('\n\n<b>The enemy took 0 damage</b>.\n')
+    write('Whew! I dodged that attack!…')
+    append('\n\n0 damage taken.\n')
   }
   else {
-    append('The ' + currentEnemy.name + (crit ? ' crits ': ' hits ' ) + 'me for ' + dmg + ' damage.\n');
+    append('\nThe ' + currentEnemy.name + (crit ? ' <b>crits</b> ': ' hits ' ) + 'me for ' + dmg + ' damage.\n');
   }
   player.stats.HPCurr -= dmg;
   player.stats.HPCurr=Math.round(player.stats.HPCurr);
@@ -180,5 +180,6 @@ function enemy_attack_roll()
 function battle_victory()
 {
   hideAllButtons();
-  battle_end_func(); // defined in game.js, assign this before entering a battle.
+  allowSaving();
+  battle_end_func(); // defined in game.js; assign this to a function (real function, not a string) before entering a battle. It's what the battle returns from. If you were in a room, give that room's function name to battle_end_func before the battle starts.
 }
