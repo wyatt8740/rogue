@@ -115,6 +115,14 @@ window.onkeyup = function(event) {
      */
     switch(key)
     {
+      case 13: // 'next' button is a common occurrence, so allow enter and spacebar to do it
+      case 32:
+        if(button[5].label==='Next' && document.activeElement.tagName != "INPUT")
+        {
+          event.preventDefault();
+          button[5].element.click();
+        }
+      break;
       /* top button row
        * requires QWERTY to behave sensibly, sorry.
        * a US keyboard is assumed, but I think it will work for others
@@ -214,11 +222,11 @@ function makeButtons() /* Called by main() right after setupScreen(). */
         */
         if(val==false)
         {
-          this.element.style["display"]="none";
           /* we won't just use the 'enabled' getter here because it makes
              this recursive and I don't like that for legibility */
           /* this.element.disabled=!val; */
           this.enabled=val;
+          this.element.style["display"]="none";
         }
         else if(val==true)
         {
@@ -373,6 +381,13 @@ function setupScreen()
     false
   );
 
+  /* Main menu button. */
+  document.getElementById("mainMenu").addEventListener(
+    "click",
+    mainMenu,
+    false
+  );
+  
   /* Load (from slot) button. See gameState.js */
   document.getElementById("load").addEventListener(
     "click",
@@ -461,12 +476,31 @@ function appendImg(str)
   $().innerHTML+=str;
 }
 
+function hideStatsArea()
+{
+  document.querySelector('.leftBar').style.display='none';
+/*
+  document.getElementById('leftBarTop').style.display='none';
+  document.getElementById('statsArea').style.display='none';
+*/
+
+}
+
+function showStatsArea()
+{
+  document.querySelector('.leftBar').style.display='block';
+/*
+  document.getElementById('leftBarTop').style.display='block';
+  document.getElementById('statsArea').style.display='block';
+*/
+}
 
 function hideAllButtons()
 {
   var i=0;
   while(i<12)
   {
+    button[i].enabled = false;
     button[i].visible = false;
     i++;
   }
@@ -486,6 +520,7 @@ function allowSaving()
 
 function updateStatusPane() /* refresh status bars with current values */
 {
+  showStatsArea();
   document.getElementById("playerName").innerHTML=player.name + " " + player.lName;
   statBarSet("#HPBar", player.stats.HPCurr );
   statBarSet("#StrBar", player.stats.str );
@@ -495,6 +530,21 @@ function updateStatusPane() /* refresh status bars with current values */
   statBarSet("#expBar", player.stats.exp );
   document.getElementById("levelField").innerHTML=player.stats.level;
   document.getElementById("moneyField").innerHTML=player.money;
+  var playerPic=document.querySelector('#playerPic img');
+  if(!player.avatar && playerPic)
+  {
+    playerPic.remove();
+  }
+  else if(player.avatar && !playerPic)
+  {
+    playerPic=document.createElement('img')
+    playerPic.setAttribute('src', player.avatar);
+    document.getElementById("playerPic").appendChild(playerPic);
+  }
+  else if(playerPic && (playerPic.getAttribute('src') != player.avatar))
+  {
+    playerPic.setAttribute('src', player.avatar);
+  }
 }
 
 function statBarSet(id, num) /* calculate stat bar widths and apply the results
@@ -667,15 +717,18 @@ function mainMenu()
   button[0].visible = true;
   button[0].label = "New Game";
   button[0].func="gameStart();";
+  hideStatsArea();
+  // reset stats
 }
 
 function main()
 {
-  setupScreen(); /* initialize stuff. Sets up keybindings, shell (console),
+  setupScreen();   /* initialize stuff. Sets up keybindings, shell (console),
                     save slot dropdown menu. */
-  makeButtons(); /* create main game button objects */
-  bindButtons(); /* some ugly hacks to bind buttons to button[x].func strings
-                    eval'd into function calls. PLEASE SUGGEST ALTERNATIVES */
-  mainMenu();    /* Main menu screen */
+  makeButtons();   /* create main game button objects */
+  bindButtons();   /* some ugly hacks to bind buttons to button[x].func strings
+                      eval'd into function calls. PLEASE SUGGEST ALTERNATIVES*/
+  mainMenu();      /* Main menu screen */
+  hideStatsArea(); /* hide stats sidebar until game gets underway. */
   updateStatusPane();
 }

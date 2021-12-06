@@ -26,11 +26,12 @@ var player = {
                  setters manipulate. Stored "privately" so we can dynamically
                  update the stat bars and such
               */
-    name:      "",
-    lName:     "",
+    name:      "—",
+    lName:     "—",
     age:       18,  // idk if we need this
     gender:    "N", // neutral. for now we don't care at all about this
-    money:     400
+    money:     0,
+    avatar:    ''   // the image displayed for the user
   },
   /* getters and setters start here */
   /* Documentation: doc/playerClass.txt */
@@ -70,7 +71,7 @@ var player = {
     }
     else
     {
-      shellWrite("<yellow>ERROR</yellow>: sex must be one of 'M', 'F', 'H', 'N'! Leaving unchanged. You supplied: " + tmp + " !");
+      shellWrite("<yellow>ERROR</yellow>: sex must be one of 'M', 'F', 'N'! Leaving unchanged. You supplied: " + tmp + " !");
     }
     updateStatusPane();
   },
@@ -100,16 +101,26 @@ var player = {
     this.privData.money=parseInt(num);
     updateStatusPane();
   },
+  get avatar()
+  {
+    return this.privData.avatar;
+    // document.querySelector('#playerPic img').getAttribute('src');
+  },
+  set avatar(str)
+  {
+    this.privData.avatar=str;
+    updateStatusPane();
+  },
   stats:   {
     privData: {
-      level:    1,
-      exp:      42,
-      HPMax:    100,
-      HPCurr:   62,
-      str:      73,
-      acc:      93,
-      def:      37,
-      int:      98,
+      level:    0,
+      exp:      0,
+      HPMax:    0,
+      HPCurr:   0,
+      str:      0,
+      acc:      0,
+      def:      0,
+      int:      0,
     },
     /* getters are apparently a new-ish thing in JS. Trying it out! */
     get level(){return this.privData.level;},
@@ -164,9 +175,7 @@ var player = {
        * type 0 is human.
        */
       head: {
-        type: 0,
-        horns: 0,
-        
+        type: 0        
       },
       arms: {
         type: 0,

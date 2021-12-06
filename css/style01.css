@@ -178,7 +178,8 @@ input {
   display:none;
 }
 .topRibbonCell {
-  width: 16.66%;
+  /*  width: 16.66%; */ /* adding new game to top ribbon means i have to change this */
+  width: 14.2857142857%;
   height: 100%;
 }
 .botRibbonCell {
@@ -190,6 +191,10 @@ input {
 #settings {
   margin-left: 14%;
   width: 86%;
+}
+#mainMenu {
+  margin-right: 14%;
+  width: 64%;
 }
 button, select{
   font-family: "URW Bookman L";

@@ -33,10 +33,10 @@ var game = {
 function gameStart()
 {
   /* start a new game */
+  hideAllButtons();
+  write(`I suddenly realize I am awake.
 
-  write(`You suddenly realize you are awake.
-
-Eyes still closed, you yawn and stretch. Wow, that was a good night of sleep! And what a dream. So realistic!
+Eyes still closed, I yawn and stretch. Wow, that was a good night of sleep. And what a dream! It was so realistic. In it, I was panicked and scrambling to finish some group project while suffering from extreme burn-out.
 
 In fact, it was so realistic and engrossing that you've forgotten who you are.
 
@@ -47,9 +47,6 @@ In fact, it was so realistic and engrossing that you've forgotten who you are.
   append('\n');
   textPrompt('player_lName', 'Last name');
 
-  button[0].visible=true;
-  button[0].label="Main Menu";
-  button[0].func="mainMenu();";
   button[5].visible=true;
   button[5].func="gameStart_page2();";
   button[5].label="Next";
@@ -58,14 +55,59 @@ In fact, it was so realistic and engrossing that you've forgotten who you are.
   /* give the player other stuff  */
 }
 
+// second page of character creation: only change anything after first page is
+// filled properly (name is entered). Otherwise we stay in the page 1 state.
 function gameStart_page2() {
   var name=document.getElementById('player_name');
   var lName=document.getElementById('player_lName');
-  if((name && lName) && (name.value && lName.value)) { // they both have to exist, and both have to be filled in
+  if((name && lName) && (name.value && lName.value)) {
+    hideAllButtons();
+    showStatsArea();
+    // they both have to exist, and both have to be filled in
     player.name=name.value;
     player.lName=lName.value;
+
+    player.avatar='./gfx/player.png';
+
+    // initialize player stats and such
+    player.money=400;
+    player.stats.level=1;
+    player.stats.exp=0;
+    player.stats.HPMax=100;
+    player.stats.HPCurr=player.stats.HPMax;
+    player.stats.str=10;
+    player.stats.acc=10;
+    player.stats.def=10;
+    player.stats.int=10;
+    write("Yes, that's right. I'm " + player.name + ' ' + player.lName + `. Sword for hire. I'm tracking a troll in the hills west of the provincial capital.
+
+With that identity crisis averted, I breathe a deep sigh. Thankfully, being banished, I am no longer a squire; I no longer have to worry about such complicated things. The dream is already fading from my memory as I stand up with a yawn.`);
+    button[5].visible=true;
+    button[5].func="gameStart_page3();";
+    button[5].label="Next";
+    
   }
+  else {
+    append(`\nSurely, I must have a full name. But what <i>was</i> it?`);
+  }
+
+}
+
+function gameStart_page3() {
+  hideAllButtons();
+  write(`I hear a twig snap. Spinning around, I can see through the early morning fog something rustling in the overgrowth to the west.
+
+Something that small is probably either a goblin or a wolf. My eyes dart around; goblins and wolves both often hunt in groups. Seeing nothing except for the small rustling patch in the overgrowth, I relax somewhat. Even if whatever it is knows I am here, I can almost certainly handle an enemy like this on my own.
+
+As quickly as I can, I take my sword from its scabbard underneath my cot, No time to don armour now; the rustling is getting closer…`)
+  button[5].visible=true;
+  button[5].func="intro_goblin_battle();";
+  button[5].label="Next";
+}
+
+function intro_goblin_battle() {
+  write(`I only have wait about ten further seconds before something small and green emerges from the brush. It leaps in surprise. Apparently, the thing didn't know I was here. Instead of backing away, however, it collects itself and pulls a dagger from its belt.
+
+Well, looks like this will be a fight, then.\n`)
   
-  
-  write('');
 }
