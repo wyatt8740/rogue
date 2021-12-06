@@ -842,24 +842,28 @@ function movementCheck(){
 
 function goNorth(){
   //window.alert("yay");
-  game.currentRoom = game.currentRoom.northNeighbor();
-  movementCheck;
+  game.currentRoom = game.currentRoom.northNeighbor;
+  game.currentRoom();
+  //movementCheck;
   
 }
 function goSouth(){
   //window.alert("yay");
-  game.currentRoom = game.currentRoom.southNeighbor();
-  movementCheck;
+  game.currentRoom = game.currentRoom.southNeighbor;
+  game.currentRoom();
+  //movementCheck;
 }
 function goEast(){
   //window.alert("yay");
-  game.currentRoom = game.currentRoom.eastNeighbor();
-  movementCheck;
+  game.currentRoom = game.currentRoom.eastNeighbor;
+  game.currentRoom();
+  //movementCheck;
 }
 function goWest(){
   //window.alert("yay");
-  game.currentRoom = game.currentRoom.westNeigbor()
-  movementCheck;
+  game.currentRoom = game.currentRoom.westNeigbor;
+  game.currentRoom();
+  //movementCheck;
 }
 function movementCheck(){
   var el = document.getElementById("btnNorth");
