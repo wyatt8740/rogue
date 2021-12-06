@@ -20,6 +20,7 @@ var templates = {
     race: 1, /* goblin */
     name: 'goblin',
     desc: 'a startled goblin',
+    level: 1,
     hpMax: 40,
     hpCurr: 40, // starting value
     stats: {
