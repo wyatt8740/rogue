@@ -896,7 +896,7 @@ function movementCheck(){
   function takeGold(gold){
     append("You add " + gold + " gold to your pouch.");
     player.money = player.money + gold;
-    treasureTaken = true;
+    game.TreasureRoom.tookGold = true;
   }
 
 

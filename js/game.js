@@ -31,14 +31,14 @@ var game = {
       placeholder: false // just so you get an idea how flags work
     },
     TreasureRoom: {
-      tookGold: false
-    }
+      tookGold: false,
+      //rollForTreasureGuard: true,
+      leftBattle: false,
+    },
     /* game flags go here */
-    var: goblin3Killed = false,
-    var: treafsureTaken = false,
-    var: rollForTreasureGuard = true,
-    var: leftBattle = false,
-
+    EnemyRoom: {
+      goblin2Killed: false,
+    },
 
   },
   hotKeysDisabled: false /* used to prevent 123456 and qwerty hotkeys from
