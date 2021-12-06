@@ -11,5 +11,15 @@ var templates = {
       int: 0, /* yes, you can have it be called int and JS doesn't complain */
       wis: 0
     }
+  },
+  intro_goblin: {    
+    race: 1, /* goblin */
+    stats: {
+      dex: 2, 
+      str: 2,
+      agi: 4,
+      int: 0, /* yes, you can have it be called int and JS doesn't complain */
+      wis: 0
+    }
   }
 };

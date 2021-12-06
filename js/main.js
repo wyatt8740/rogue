@@ -30,6 +30,9 @@ var shell;
 var closeShellBtn;
 var shellInput;
 var lastState=[]; /* for more convenient exiting of menus ('back a page' buttons)*/
+
+var currentEnemy=JSON.parse(JSON.stringify(templates.npc));
+
 function shellClear() {
   /* erase shell output */
   shell.innerHTML=""
@@ -52,7 +55,7 @@ function shellHelp()
 
 function toggleJSCon()
 {
-  if(popOver.style.display=="block")
+  if(popOver.style && popOver.style.display=="block")
   {
     hideShell();
   }
@@ -758,8 +761,8 @@ function mainMenu()
 {
   allowSaving()
   document.getElementById("settings").disabled=false;
-  write("<center><b>The Unnamed Game</b></center>");
-  append('\nSource code is at: <a href="https://gitlab.com/wyatt8740/unnamed-game">https://gitlab.com/wyatt8740/unnamed-game</a>');
+  write("<center><b>Adventure 2021</b></center>");
+  append('\nSource code is at: <a href="https://github.com/wyatt8740/rogue">https://github.com/wyatt8740/rogue</a>');
   append("\n\nDemo'ing buttons!\n Settings menu can now be returned from. Saving works too, even though there's not anything interesting to save yet.\nAlso I added keybindings for the button rows! :D - 123456 for the top row, qwerty for the bottom.");
   append("\n<img src='img/test.png'>");
   button[0].visible = true;
@@ -777,8 +780,8 @@ function main()
   bindButtons();   /* some ugly hacks to bind buttons to button[x].func strings
                       eval'd into function calls. PLEASE SUGGEST ALTERNATIVES*/
   mainMenu();      /* Main menu screen */
-  hideStatsArea(); /* hide stats sidebar until game gets underway. */
   updateStatusPane();
+  hideStatsArea(); /* hide stats sidebar until game gets underway. */
 }
 
 function goNorth(){

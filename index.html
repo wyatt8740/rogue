@@ -25,6 +25,8 @@
     <title>Unnamed Game</title>
     <link rel="stylesheet" href="css/style01.css">
     <link rel="icon" href="img/favicon-16.png" type="image/png" sizes="16x16">
+    <!-- Templates for objects which might be created on the fly -->
+    <script src="js/objTemplates.js"></script>
     <!-- Page setup stuff. Also initializes the game and has main loop. -->
     <script src="js/main.js"></script>
     <!-- Player object definition. -->
@@ -33,10 +35,10 @@
     <script src="js/game.js"></script>
     <!-- Game state stuff, like functions to save/restore states, and some object management routines -->
     <script src="js/gameState.js"></script>
-    <!-- Templates for objects which might be created on the fly -->
-    <script src="js/objTemplates.js"></script>
     <!-- Room definitions -->
     <script src="js/rooms.js"></script>
+    <!-- battle script -->
+    <script src="js/battle.js"></script>
   </head>
   <body onload="main();">
     <!-- we are using a custom upload button which triggers this form via a
