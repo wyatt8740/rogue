@@ -841,19 +841,19 @@ function movementCheck(){
 }
 
 function goNorth(){
-  window.alert("yay");
+  //window.alert("yay");
   movementCheck;
 }
 function goSouth(){
-  window.alert("yay");
+  //window.alert("yay");
   movementCheck;
 }
 function goEast(){
-  window.alert("yay");
+  //window.alert("yay");
   movementCheck;
 }
 function goWest(){
-  window.alert("yay");
+  //window.alert("yay");
   movementCheck;
 }
 function movementCheck(){
