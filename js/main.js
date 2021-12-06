@@ -762,9 +762,9 @@ function mainMenu()
   allowSaving()
   document.getElementById("settings").disabled=false;
   write("<center><b>Adventure 2021</b></center>");
-  append('\nSource code is at: <a href="https://github.com/wyatt8740/rogue">https://github.com/wyatt8740/rogue</a>');
 /*  append("\n\nDemo'ing buttons!\n Settings menu can now be returned from. Saving works too, even though there's not anything interesting to save yet.\nAlso I added keybindings for the button rows! :D - 123456 for the top row, qwerty for the bottom.");*/
-  append("\n<img src='img/dr-evil'>");
+  append("\n<img src='img/dr-evil.png'>");
+  append('\nSource code is at: <a href="https://github.com/wyatt8740/rogue">https://github.com/wyatt8740/rogue</a>');
   button[0].visible = true;
   button[0].label = "New Game";
   button[0].func="gameStart();";
