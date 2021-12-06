@@ -6,9 +6,14 @@ var templates = {
     race: 0, /* to-do: define global type constants */
     name: 'npc',
     desc: 'an NPC wojak',
-    hpMax: 50,
-    hpCurr: 50, // starting value
+    weaponStr: 1,
+    weaponAcc: 1,
+    weaponDef: 1,
+    weaponInt: 1,
     stats: {
+      level: 1,
+      HPMax: 50,
+      HPCurr: 50, // starting value
       dex: 0, 
       str: 0,
       agi: 0,
@@ -20,10 +25,15 @@ var templates = {
     race: 1, /* goblin */
     name: 'goblin',
     desc: 'a startled goblin',
-    level: 1,
-    hpMax: 40,
-    hpCurr: 40, // starting value
+    weaponStr: 2,
+    weaponAcc: 1,
+    weaponDef: 1,
+    weaponInt: 1,
+    attackText: 'slashes viciously with its knife!',
     stats: {
+      level: 1,
+      HPMax: 40,
+      HPCurr: 40, // starting value
       dex: 2, 
       str: 2,
       agi: 4,

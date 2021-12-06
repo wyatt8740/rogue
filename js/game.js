@@ -15,6 +15,8 @@
  *  along with The Unnamed Game.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+var battle_end_func=function() { return true };
+
 var game = {
   daysPlayed:    0,
   timeMinutes:   0,  /* goes from 0 to 1339. (60*24=1400)*/
@@ -118,5 +120,24 @@ function intro_goblin_battle() {
   write(`I only have wait about ten further seconds before something small and green emerges from the brush. It leaps in surprise. Apparently, the thing didn't know I was here. Instead of backing away, however, it collects itself and pulls a dagger from its belt.
 
 Well, the goblin asked for it. Shame it wasn't a wolf, or it might have made good food. It looks like this will have to be a fight.\n`);
+  battle_end_func=won_goblin_battle;
   start_battle("intro_goblin");
+}
+
+function won_goblin_battle() {
+  append ("I won the fight with the goblin! ");
+
+  button[5].visible=true;
+  button[5].func="endTutorial()";
+  button[5].label="Next";
+}
+
+function game_over() {
+  append('\n\n<b>You are dead!!!</b>\n\nGame over. Please restore a save or start a new game.');
+  hideAllButtons();
+}
+
+function endTutorial() {
+  append('The tutorial is done.');
+  hideAllButtons();
 }
