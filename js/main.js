@@ -893,5 +893,11 @@ function movementCheck(){
     el.attr("disabled", "disabled");
   }
 
+  function takeGold(gold){
+    append("You add " + gold + " gold to your pouch.");
+    player.money = player.money + gold;
+    treasureTaken = true;
+  }
+
 
 }

@@ -24,15 +24,30 @@
    return room;
 }*/
 
-function treasure_room(){
+function treasure_room(leftBattle){
    //presumably this will generate items randomly
    var gold = Math.ceiling(100*Math.random());
    write("I've entered a small room, with a chest along the opposite wall. It's been left open and I can see gold pieces inside.");
    append("The only way out is back the way I came, to the west.");
-   var encounter = roll();
-   if(encounter == 1 || encounter == 2){
-      append("Unfortunately I also see a goblin here. The creature immediately moves to guard the chest, glaring at me and readying its weapon. Here we go again.");
-      start_battle(intro_goblin);
+   if(leftBattle == false){
+      var encounter = roll();
+      if(encounter == 1 || encounter == 2){
+         append("Unfortunately I also see a goblin here. The creature immediately moves to guard the chest, glaring at me and readying its weapon. Here we go again.");
+         battle_end_func = treasure_room(true);
+         start_battle(intro_goblin);
+      }
+      rollForTreasureGuard = false;
+   }
+   if(goblin3Killed == true){
+      append ("I have killed again! The third goblin I've encountered today lies lifeless on the floor like its brethren. /nNow, to get that treasure and move on.");
+   }
+
+   button[7].visible=true;
+   button[7].func="takeGold(gold);";
+   button[7].label="Loot Gold";
+
+   if(treasureTaken == true){
+      append("I have already looted the room, there is nothing left to do here.")
    }
 }
 
@@ -44,12 +59,15 @@ function enemy_room(){
    append("Along the eastern wall there is a sturdy metal door that has been left ajar. On the northern end a closed wooden door waits.");
    append("But in the center of the room a goblin has stood up from his chair at a long table.");
    append("The door behind me suddenly slams shut followed by the unmistakable sound of a bolt sliding home. I will have fight this creature");
-   start_battle(intro_goblin);
+   if(goblin2Killed == false){
+      battle_end_func = enemy_room();
+      start_battle(intro_goblin);
+   }
 }
 function exit_area(){
 
    write("I enter a medium sized room. Moth eaten cloaks hang on one wall above dusty boots. Along the east are a few weapons and pieces of armor.");
    append("Clearly at some point this was a mud room, but that was so long ago nothing abandoned here is useful.");
    append("Though there may be some gold tucked away in the clothing. I could check before I move on.");
-   append("The only way forward is a wooden door to the North. Light is spilling around its cracks and I can faintly hear trees rustling in the wind. This must be an exit")
+   append("The only way forward is a wooden door to the North. Light is spilling around its cracks and I can faintly hear trees rustling in the wind. This must be an exit");
 }

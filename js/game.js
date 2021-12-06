@@ -27,6 +27,12 @@ var game = {
   playerPosition: 0, /* placeholder */
   gameFlags: {
     /* game flags go here */
+    var: goblin3Killed = false,
+    var: treafsureTaken = false,
+    var: rollForTreasureGuard = true,
+    var: leftBattle = false,
+
+
   },
   hotKeysDisabled: false /* used to prevent 123456 and qwerty hotkeys from
                             interfering when text inputs are active */
