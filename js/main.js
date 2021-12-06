@@ -416,7 +416,31 @@ function setupScreen()
     false
   );
 
-
+  var el = document.getElementById("btnNorth");
+  if (el.addEventListener)
+      el.addEventListener("click", goNorth, false);
+  else if (el.attachEvent)
+      el.attachEvent('onclick', goNorth);
+  
+  var el = document.getElementById("btnSouth");
+  if (el.addEventListener)
+      el.addEventListener("click", goSouth, false);
+  else if (el.attachEvent)
+      el.attachEvent('onclick', goSouth);
+  
+  var el = document.getElementById("btnEast");
+  if (el.addEventListener)
+      el.addEventListener("click", goEast, false);
+  else if (el.attachEvent)
+      el.attachEvent('onclick', goEast);
+  
+  var el = document.getElementById("btnWest");
+  if (el.addEventListener)
+      el.addEventListener("click", goWest, false);
+  else if (el.attachEvent)
+      el.attachEvent('onclick', goWest);
+  
+  
 
   
 }
@@ -678,4 +702,60 @@ function main()
                     eval'd into function calls. PLEASE SUGGEST ALTERNATIVES */
   mainMenu();    /* Main menu screen */
   updateStatusPane();
+}
+
+function goNorth(){
+  window.alert("yay");
+  movementCheck;
+}
+function goSouth(){
+  window.alert("yay");
+  movementCheck;
+}
+function goEast(){
+  window.alert("yay");
+  movementCheck;
+}
+function goWest(){
+  window.alert("yay");
+  movementCheck;
+}
+function movementCheck(){
+  var el = document.getElementById("btnNorth");
+  if(room.north && el.hasAttribute("disabled")){
+    
+    el.removeAttr("disabled");
+  }
+  else{
+    el.attr("disabled", "disabled");
+  }
+
+  el = document.getElementById("btnSouth");
+  if(room.south && el.hasAttribute("disabled")){
+    
+    el.removeAttr("disabled");
+  }
+  else{
+    el.attr("disabled", "disabled");
+  }
+
+  el = document.getElementById("btnEast");
+  if(room.east && el.hasAttribute("disabled")){
+    
+    el.removeAttr("disabled");
+  }
+  else{
+    el.attr("disabled", "disabled");
+  }
+
+  el = document.getElementById("btnWest");
+  if(room.west && el.hasAttribute("disabled")){
+    
+    el.removeAttr("disabled");
+  }
+  else{
+    el.attr("disabled", "disabled");
+  }
+
+
 }
