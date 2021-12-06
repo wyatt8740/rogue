@@ -16,6 +16,7 @@
  */
 
 var battle_end_func=function() { return true };
+// TODO: stuff this inside game object. If we do this saving mid-battle will "just work."
 
 var game = {
   daysPlayed:    0,
@@ -26,6 +27,12 @@ var game = {
   },
   playerPosition: 0, /* placeholder */
   gameFlags: {
+    Tutorial: {
+      placeholder: false // just so you get an idea how flags work
+    },
+    TreasureRoom: {
+      tookGold: false
+    }
     /* game flags go here */
     var: goblin3Killed = false,
     var: treafsureTaken = false,
@@ -126,12 +133,12 @@ function intro_goblin_battle() {
   write(`I only have wait about ten further seconds before something small and green emerges from the brush. It leaps in surprise. Apparently, the thing didn't know I was here. Instead of backing away, however, it collects itself and pulls a dagger from its belt.
 
 Well, the goblin asked for it. Shame it wasn't a wolf, or it might have made good food. It looks like this will have to be a fight.\n`);
-  battle_end_func=won_goblin_battle;
+  battle_end_func=won_goblin_battle; // assign this to a function (real function, not a string) before entering a battle. It's what the battle returns from. If you were in a room, give that room's function name to battle_end_func before the battle starts.
   start_battle("intro_goblin");
 }
 
 function won_goblin_battle() {
-  append ("I won the fight with the goblin! ");
+  append ("\n\n<b>I won the fight with the goblin!</b>\n");
 
   button[5].visible=true;
   button[5].func="endTutorial()";

@@ -711,7 +711,7 @@ function settingsMenu()
   console.log(lastState);
   /* FIXME: I _really_ need to find some better way to store a "link" to a function in a
      serializable (saveable) way. */
-  button[5].func="loadSaveData(lastState[0]); allowSaving(); document.getElementById(\"settings\").disabled=false;"; /* restore last state on 'back' button */
+  button[5].func="loadSaveData(lastState[0]); allowSaving(); document.getElementById(\"settings\").disabled=false; hideStatsArea();"; /* restore last state on 'back' button */
 }
 
 function fullScreen()
@@ -761,10 +761,10 @@ function mainMenu()
 {
   allowSaving()
   document.getElementById("settings").disabled=false;
-  write("<center><b>Adventure 2021</b></center>");
-/*  append("\n\nDemo'ing buttons!\n Settings menu can now be returned from. Saving works too, even though there's not anything interesting to save yet.\nAlso I added keybindings for the button rows! :D - 123456 for the top row, qwerty for the bottom.");*/
-  append("\n<img src='./img/dr-evil.png'>");
-  append('\nSource code is at: <a href="https://github.com/wyatt8740/rogue">https://github.com/wyatt8740/rogue</a>');
+  write("<center><img src='./img/favicon-32.png'><b>Adventure 2021</b><img src='./img/favicon-32-rotate.png'></center>");
+  /*  append("\n\nDemo'ing buttons!\n Settings menu can now be returned from. Saving works too, even though there's not anything interesting to save yet.\nAlso I added keybindings for the button rows! :D - 123456 for the top row, qwerty for the bottom.");*/
+  append("\n<center><img src='./img/dr-evil2.png'></center>");
+  append('\n<center>Source code is at: <a href="https://github.com/wyatt8740/rogue">https://github.com/wyatt8740/rogue</a></center>');
   button[0].visible = true;
   button[0].label = "New Game";
   button[0].func="gameStart();";

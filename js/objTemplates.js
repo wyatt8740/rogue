@@ -32,8 +32,8 @@ var templates = {
     attackText: 'slashes viciously with its knife!',
     stats: {
       level: 1,
-      HPMax: 40,
-      HPCurr: 40, // starting value
+      HPMax: 70,
+      HPCurr: 70, // starting value
       dex: 2, 
       str: 2,
       agi: 4,

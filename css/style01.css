@@ -110,6 +110,11 @@ input {
   flex-direction: column;
   border-spacing: 2px;
 }
+
+#playerName {
+  font-weight: bold;
+}
+
 .main {
   height: 100vh;
   width: 85%;
@@ -317,6 +322,8 @@ a:visited {
 /* <center> is not a supported tag in HTML5, so implement it ourselves */
 center {
   text-align:center;
+  margin-left: auto;
+  margin-right: auto;
 }
 red {
   color: red;
