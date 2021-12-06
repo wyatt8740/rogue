@@ -30,6 +30,9 @@ var shell;
 var closeShellBtn;
 var shellInput;
 var lastState=[]; /* for more convenient exiting of menus ('back a page' buttons)*/
+
+var currentEnemy=JSON.parse(JSON.stringify(templates.npc));
+
 function shellClear() {
   /* erase shell output */
   shell.innerHTML=""
@@ -52,7 +55,7 @@ function shellHelp()
 
 function toggleJSCon()
 {
-  if(popOver.style.display=="block")
+  if(popOver.style && popOver.style.display=="block")
   {
     hideShell();
   }
@@ -729,6 +732,6 @@ function main()
   bindButtons();   /* some ugly hacks to bind buttons to button[x].func strings
                       eval'd into function calls. PLEASE SUGGEST ALTERNATIVES*/
   mainMenu();      /* Main menu screen */
-  hideStatsArea(); /* hide stats sidebar until game gets underway. */
   updateStatusPane();
+  hideStatsArea(); /* hide stats sidebar until game gets underway. */
 }
