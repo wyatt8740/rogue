@@ -38,9 +38,9 @@ function gameStart()
 
 Eyes still closed, I yawn and stretch. Wow, that was a good night of sleep. And what a dream! It was so realistic. In it, I was panicked and scrambling to finish some group project while suffering from extreme burn-out.
 
-In fact, it was so realistic and engrossing that you've forgotten who you are.
+In fact, it was so realistic and engrossing that I've temporarily forgotten who I am.
 
-…What was your name, again…?\n`);
+…What was my name, again…?\n`);
   // textPrompt([id of input element], [placeholder text, defaults to empty string])
   // automatically creates and appends a field to the output window contents
   textPrompt('player_name', 'First name');
