@@ -839,3 +839,59 @@ function movementCheck(){
 
 
 }
+
+function goNorth(){
+  window.alert("yay");
+  movementCheck;
+}
+function goSouth(){
+  window.alert("yay");
+  movementCheck;
+}
+function goEast(){
+  window.alert("yay");
+  movementCheck;
+}
+function goWest(){
+  window.alert("yay");
+  movementCheck;
+}
+function movementCheck(){
+  var el = document.getElementById("btnNorth");
+  if(room.north && el.hasAttribute("disabled")){
+    
+    el.removeAttr("disabled");
+  }
+  else{
+    el.attr("disabled", "disabled");
+  }
+
+  el = document.getElementById("btnSouth");
+  if(room.south && el.hasAttribute("disabled")){
+    
+    el.removeAttr("disabled");
+  }
+  else{
+    el.attr("disabled", "disabled");
+  }
+
+  el = document.getElementById("btnEast");
+  if(room.east && el.hasAttribute("disabled")){
+    
+    el.removeAttr("disabled");
+  }
+  else{
+    el.attr("disabled", "disabled");
+  }
+
+  el = document.getElementById("btnWest");
+  if(room.west && el.hasAttribute("disabled")){
+    
+    el.removeAttr("disabled");
+  }
+  else{
+    el.attr("disabled", "disabled");
+  }
+
+
+}
