@@ -31,7 +31,8 @@ var player = {
     age:       18,  // idk if we need this
     gender:    "N", // neutral. for now we don't care at all about this
     money:     0,
-    avatar:    ''   // the image displayed for the user
+    avatar:    '',   // the image displayed for the user
+    weapon:    ''
   },
   /* getters and setters start here */
   /* Documentation: doc/playerClass.txt */
@@ -109,6 +110,18 @@ var player = {
   set avatar(str)
   {
     this.privData.avatar=str;
+    updateStatusPane();
+  },
+  get weapon() {
+    return getWeaponData(this.privData.weapon); // return a copy of the weapon given weapon object template
+  },
+  set weapon(str) {
+    if(getWeaponData(str)) { // if the weapon name is valid
+      this.privData.weapon = str;
+    }
+    else {
+      console.log('Warning: attempted to set invalid weapon ' + str + '!');
+    }
     updateStatusPane();
   },
   stats:   {

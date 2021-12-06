@@ -55,6 +55,14 @@ In fact, it was so realistic and engrossing that I've temporarily forgotten who 
   /* give the player other stuff  */
 }
 
+// function to roll an n-sided die
+function roll(max) {
+  var min = Math.ceil(1);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+}
+
+
 // second page of character creation: only change anything after first page is
 // filled properly (name is entered). Otherwise we stay in the page 1 state.
 function gameStart_page2() {
@@ -79,6 +87,7 @@ function gameStart_page2() {
     player.stats.acc=10;
     player.stats.def=10;
     player.stats.int=10;
+    player.weapon='starter_sword';
     write("Yes, that's right. I'm " + player.name + ' ' + player.lName + `. Sword for hire. I'm tracking a troll in the hills west of the provincial capital.
 
 With that identity crisis averted, I breathe a deep sigh. Thankfully, being banished, I am no longer a squire; I no longer have to worry about such complicated things. The dream is already fading from my memory as I stand up with a yawn.`);
