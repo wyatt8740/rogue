@@ -15,6 +15,7 @@ function start_battle(enemy)
       return;
   }
   disallowSaving()
+  hideAllButtons();
   player_turn();
 }
 
@@ -25,7 +26,6 @@ function player_turn()
   button[0].visible=true;
   button[0].label='Attack';
   button[0].func='attack_enemy();'
-
 }
 
 function fight_status()
