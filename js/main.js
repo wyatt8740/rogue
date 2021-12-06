@@ -842,18 +842,23 @@ function movementCheck(){
 
 function goNorth(){
   //window.alert("yay");
+  game.currentRoom = game.currentRoom.northNeighbor();
   movementCheck;
+  
 }
 function goSouth(){
   //window.alert("yay");
+  game.currentRoom = game.currentRoom.southNeighbor();
   movementCheck;
 }
 function goEast(){
   //window.alert("yay");
+  game.currentRoom = game.currentRoom.eastNeighbor();
   movementCheck;
 }
 function goWest(){
   //window.alert("yay");
+  game.currentRoom = game.currentRoom.westNeigbor()
   movementCheck;
 }
 function movementCheck(){
@@ -897,6 +902,10 @@ function movementCheck(){
     append("You add " + gold + " gold to your pouch.");
     player.money = player.money + gold;
     game.TreasureRoom.tookGold = true;
+  }
+
+  function gameOver(){
+    write("You have escaped the demo.");
   }
 
 

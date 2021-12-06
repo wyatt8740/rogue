@@ -40,6 +40,8 @@ var game = {
       goblin2Killed: false,
     },
 
+    currentRoom: starter_room(),
+
   },
   hotKeysDisabled: false /* used to prevent 123456 and qwerty hotkeys from
                             interfering when text inputs are active */
@@ -153,4 +155,5 @@ function game_over() {
 function endTutorial() {
   append('The tutorial is done.');
   hideAllButtons();
+  currentRoom = starter_room();
 }
